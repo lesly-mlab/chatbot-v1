@@ -1,0 +1,95 @@
+ion-button {
+    --width: 40px;
+    --height: 40px;
+}
+
+ion-content {
+    --offset-bottom: -80px !important;
+    // --offset-top: -80px !important;
+}
+
+.scrollable {
+    overflow-y: scroll; 
+    height: 95%;
+}
+
+    #editable {
+        background: #efefef;
+        display:inline-block;
+        min-height:40px;
+        padding: 15px;
+        position: absolute;
+        left: 15px;
+        right: 80px;
+        bottom: 15px;
+        border-radius: 20px;
+    }
+
+    input {
+        background: transparent;
+        border: none;
+        width: 100%;
+    }
+
+    .send {
+        position: absolute;
+        right: 15px;
+        bottom: 15px;
+    }
+
+    #attach {
+        // position: absolute;
+        // left: 15px;
+        // bottom: 15px;
+    }
+
+.chat {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.online-status {
+    font-size: 0.7em;
+    color: #808080;
+    text-align: center;
+    font-weight: normal;
+}
+
+#header {
+    height: 80px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 15px;
+    border-bottom-color: #efefef;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+
+    #name {
+        flex-grow: 1;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #back {
+        width: 64px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-items: center;
+    }
+    
+    #photo {
+        ion-avatar {
+            
+        }
+    }
+}

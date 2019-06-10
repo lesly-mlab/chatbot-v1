@@ -1,0 +1,104 @@
+{
+    "start": "greeting",
+    "greeting": {
+        "type": "message",
+        "content": "Welcome - Create a VBS Luxury Experience",
+        "next": "letscreate"
+    },
+    "letscreate": {
+        "type": "message",
+        "content": "Let us create your unique luxurious experience together",
+        "next": "type"
+    },
+    "type": {
+        "type": "options",
+        "content": "What type of experience are you looking for?",
+        "options": [{
+            "text": "Travel & Accommodation",
+            "value": "travel",
+            "next": "package"
+        },
+        {
+            "text": "Food",
+            "value": "food",
+            "next": "package"
+        },
+        {
+            "text": "Transport",
+            "value": "transport",
+            "next": "package"
+        },
+        {
+            "text": "Entertainment",
+            "value": "entertainment",
+            "next": "package"
+        },
+        {
+            "text": "Custom Art",
+            "value": "custom-art",
+            "next": "package"
+        }]
+    },
+    "package": {
+        "type": "options",
+        "content": "Please select a Package",
+        "options": [{
+            "text": "R10K",
+            "value": "R10K",
+            "next": "linkYou"
+        },
+        {
+            "text": "R20K",
+            "value": "R20K",
+            "next": "linkYou"
+        },
+        {
+            "text": "R50K",
+            "value": "R50K",
+            "next": "linkYou"
+        },
+        {
+            "text": "R100K",
+            "value": "R100K",
+            "next": "linkYou"
+        },
+        {
+            "text": "More than R100K",
+            "value": "more",
+            "next": "packageValue"
+        }]
+    },
+    "linkYou": {
+        "type": "message",
+        "content": "Please enter your contacts so we can link you up with a VBS personal luxury consultant",
+        "next": "name"
+    },
+    "packageValue": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "How much is your budget?",
+        "next": "linkYou"
+    },
+    "name": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "What is your name and surname?",
+        "next": "contact"
+    },
+    "contact": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "What is your contact number?",
+        "next": "email"
+    },
+    "email": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "What is your email address?",
+        "next": "done"
+    },
+    "done": {
+        "type": "message",
+        "content": "Thank you. We will get back to you as soon as possible"
+    }
+}

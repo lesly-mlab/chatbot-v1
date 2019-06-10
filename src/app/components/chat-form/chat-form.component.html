@@ -1,0 +1,42 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary">
+    <ion-back-button slot="start"></ion-back-button>
+    <ion-title>{{title}}</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+<!-- <ion-content> -->
+    <div class="scrollable" [ngStyle]="{'height': height+'px'}">
+    <div class="chat" padding >
+      <div #bottomView></div>
+      <chat-bubble (optionSelected)="optionSelected($event)" *ngFor="let message of chatForm?.messages" [message]="message"></chat-bubble>
+        
+    </div>
+  </div>
+  <!-- </ion-content> -->
+  
+  <div id="new-message" >
+    <!-- <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button (click)="uploadImage(file)" id="attach" fill="clear" color="primary"><ion-icon name="attach"></ion-icon></ion-fab-button>
+    </ion-fab> -->
+  
+    
+    <div [hidden]="chatForm?.currentMessage.fieldType == 'camera' || chatForm?.currentMessage.fieldType == 'location'" id="editable"  #editableDiv (click)="newMessageClicked($event)">
+      <input [(ngModel)]="value" type="text" [disabled]="chatForm?.currentMessage.fieldType != 'text'" />
+    </div>
+    <ion-fab-button *ngIf="chatForm?.currentMessage.fieldType != 'camera' && chatForm?.currentMessage.fieldType != 'location'" (click)="send()" class="send" fill="clear" color="primary"><ion-icon name="send"></ion-icon></ion-fab-button>
+    <ion-fab-button *ngIf="chatForm?.currentMessage.fieldType == 'camera'" (click)="newMessageClicked($event)" class="send" fill="clear" color="primary"><ion-icon name="camera"></ion-icon></ion-fab-button>
+    <ion-fab-button *ngIf="chatForm?.currentMessage.fieldType == 'location'" (click)="newMessageClicked($event)" class="send" fill="clear" color="primary"><ion-icon name="pin"></ion-icon></ion-fab-button>
+  </div>
+  
+  <input #file id="file" type="file" (change)="previewImage(file.files)" accept="image/gif, image/jpeg, image/png" style="display: none">
+  <video #video id="player" controls autoplay style="display: none"></video>
+
+  <ion-datetime [(ngModel)]="date" min="2019-02-21" max="2019-12-31" style="display: none" (ionChange)="dateChanged($event)" #datepicker display-format="DD MMM YYYY"></ion-datetime>
+  <ion-datetime style="display: none" (ionChange)="timeChanged($event)" display-format="HH:mm" #timepicker></ion-datetime>
+
+  <ion-select style="display: none" (ionChange)="dropdownChanged($event)" #dropdown>
+    <ion-select-option [value]="item" *ngFor="let item of list$ | async">{{item.name}}</ion-select-option>
+  </ion-select>
+
+  <loader [process]="list$"></loader>

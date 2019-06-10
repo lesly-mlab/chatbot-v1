@@ -1,0 +1,21 @@
+
+    <div class="bubble" [ngClass]="{'sent': message.type == 'sent', 'received': message.type == 'received'}">
+        <div class="message" [hidden]="message.image">
+          <p #messageContent></p>
+        </div>
+      
+        <div class="message" [hidden]="!message.image" (click)="fullScreenImage()">
+          <img [ngStyle]="{'background-image': 'url(' + message.image + ')'}" />
+        </div>
+      
+        <!-- <div class="message" *ngIf="message.fileType == 'emoji'">
+          <img [src]="message.image" />
+        </div> -->
+        <!-- <span class="time">11:00{{date(message.created?.seconds) | amDateFormat:'HH:mm'}}</span> -->
+        <!-- <span class="time">11:00</span> -->
+      </div>
+
+      <div class="options" *ngIf="message.type=='options' && selected == false">
+          <ion-button (click)="optionChosen(option)" color="light" size="small" shape="round" *ngFor="let option of message.options">{{option.text}}</ion-button>
+        </div>
+  

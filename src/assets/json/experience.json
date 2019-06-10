@@ -1,0 +1,252 @@
+{
+    "start": "greeting",
+    "greeting": {
+        "type": "message",
+        "content": "Welcome to mLab - I am the mLab Bot",
+        "next": "letscreate"
+    },
+    "letscreate": {
+        "type": "message",
+        "content": "I just want to get an update on how your business has been doing",
+        "next": "time"
+    },
+
+    "time": {
+        "type": "options",
+        "content": "Do you have 10min to chat?",
+        "options": [{
+            "text": "Yes",
+            "value": "yes",
+            "next": "teamChanges"
+        },
+        {
+            "text": "No",
+            "value": "no",
+            "next": "selectdate"
+        }]
+    },
+
+    "selectdate": {
+        "type": "question",
+        "fieldType": "date",
+        "content": "On which day would be more suitable for us to continue with our conversation?",
+        "next": "done"
+    },
+
+    "teamChanges": {
+        "type": "options",
+        "content": "Have you had any changes to your team(Founders, Employees) since our last conversation?",
+        "options": [{
+            "text": "Founders",
+            "value": "Founders",
+            "next": "totalFounders"
+        },
+        {
+            "text": "Employees",
+            "value": "Employees",
+            "next": "totalEmployees"
+        },
+        {
+            "text": "Both",
+            "value": "Both",
+            "next": "totFounders"
+        },
+        {
+            "text": "None",
+            "value": "None",
+            "next": "Message"
+        }]
+    },
+
+    "totalFounders": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total number of founders?",
+        "next": "womenFounders"
+    },
+  
+    "womenFounders": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many founders are women?",
+        "next": "blackFounders"
+    },
+
+    "blackFounders": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many founders are Black(based on BBBEE guidelines)?",
+        "next": "feedbackMessage"
+    },
+
+    "totalEmployees": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total number of Employees?",
+        "next": "womenEmployees"
+    },
+  
+    "womenEmployees": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many employees are women?",
+        "next": "blackEmployees"
+    },
+    
+    "blackEmployees": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many employees are Black(based on BBBEE guidelines)?",
+        "next": "feedbackMessage"
+    },
+
+    "totFounder": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total number of founders?",
+        "next": "black_Founder"
+    },
+
+    "black_Founder": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many founders are Black(based on BBBEE guidelines)?",
+        "next": "tot_Emp"
+    },
+    "tot_Emp": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total number of Employees?",
+        "next": "women_Emp"
+    },
+  
+    "women_Emp": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many employees are women?",
+        "next": "black_Emp"
+    },
+    
+    "black_Emp": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "How many employees are Black(based on BBBEE guidelines)?",
+        "next": "feedbackMessage"
+    },
+
+    
+    "feedbackMessage": {    
+        "type": "message",
+        "content": "Okay, thanks for the updates on your team. Let's move to your business solutions",
+        "next": "totalUsers"
+    },
+
+    "Message": {    
+        "type": "message",
+        "content": "Alright, Now let's move to your business solutions",
+        "next": "totalUsers"
+    },
+    "totalUsers": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total users reached?",
+        "next": "totalActiveUsers"
+    },
+
+    "totalActiveUsers": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total active users to date?",
+        "next": "financeSection"
+    },
+
+    "financeSection": {    
+        "type": "message",
+        "content": "Thanks a lot for the updates on your business solutions. Let's move to your Financial solutions",
+        "next": "totalRevenue"
+    },
+
+    "totalRevenue": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total revenue to date?",
+        "next": "totalCapital"
+    },
+
+    "totalCapital": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total capital to date?",
+        "next": "totalFunds"
+    },
+
+    "totalFunds": {
+        "type": "question",
+        "fieldType": "number",
+        "content": "Total funds leveraged to date e.g grants, prizes, equity, loans?",
+        "next": "highlightsSection"
+    },
+
+    "highlightsSection": {    
+        "type": "message",
+        "content": "Almost done, Now Let's move to your Your Big Hightlights",
+        "next": "biggestHighlights"
+    },
+
+    "biggestHighlights": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "What are your biggest highlights?",
+        "next": "challengesSection"
+    },
+
+    "challengesSection": {    
+        "type": "message",
+        "content": "Finally, we in the last section...",
+        "next": "challenges"
+    },
+
+    "challenges": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "What was your biggest challenge?",
+        "next": "challengesOvercoming"
+    },
+
+    "challengesOvercoming": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "How are you thinking of overcoming this challenges?",
+        "next": "fullUpdates"
+    },
+
+    "fullUpdates": {
+        "type": "options",
+        "content": "Any other updates?",
+        "options": [{
+            "text": "Yes",
+            "value": "yes",
+            "next": "fullFeedback"
+        },
+        {
+            "text": "No",
+            "value": "No",
+            "next": "done"
+        }]
+    },
+    "fullFeedback": {
+        "type": "question",
+        "fieldType": "text",
+        "content": "Please give us a brief explanation below",
+        "next": "done"
+    },
+
+    "done": {
+        "type": "message",
+        "content": "Thanks for taking the time to chat with me, I look forward to hear about your growth in our next chat. Bye for now..",
+        "next": "submit"
+    },
+    "submit": {
+        "type": "action"
+    }
+}

@@ -1,0 +1,125 @@
+.options {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.sent {
+        
+    flex-direction: row-reverse;
+
+    .message {
+        border-radius: 10px;
+        border-top-right-radius: 0px;
+        background: white !important;
+        // border-color: #83e2f0;
+        border-color: black !important;
+        border-width: 2px !important;
+        border-style: solid !important;
+
+        p {
+            display: block;
+            white-space: pre-wrap;
+            color: black !important;
+            font-weight: bold;
+        }
+    }
+}
+
+.received {
+    flex-direction: row;
+    color: white !important;
+
+    .message {
+        border-radius: 10px;
+        border-top-left-radius: 0px;
+        // background: #f3f3f3;
+        border-color: #ffffff !important;
+        border-style: solid !important;
+        border-width: 1px !important;
+        background: black;
+        
+
+        p {
+            display: block;
+            white-space: pre-wrap;
+            color: white;
+        }
+
+        a {
+            color: white;
+        }
+    }
+}
+
+.bubble {
+    width: 100%;
+    display: flex;
+    margin-bottom: 10px;
+
+    .message {
+        max-width: 80%;
+        // max-width: 300px;
+        padding: 10px;
+        border-style: solid;
+        border-width: 1px;
+
+        border-radius: 10px;
+        border-top-left-radius: 0px;
+        // background: #f3f3f3;
+        border-color: #efefef !important;
+        border-style: solid !important;
+        border-width: 1px !important;
+        background: black;
+
+        p {
+            margin: 0px;
+            font-size: 0.9em;
+            // color: #111111;
+            display: block;
+            white-space: pre-wrap;
+            color: white;
+        }
+
+        border-radius: 10px;
+        border-top-left-radius: 0px;
+    }
+
+    // .message {
+    //     border-radius: 10px;
+    //     border-top-left-radius: 0px;
+    //     // background: #f3f3f3;
+    //     // border-color: #cbcdcd;
+    //     border-style: none;
+    //     background: black;
+        
+
+    //     // p {
+    //     //     display: block;
+    //     //     white-space: pre-wrap;
+    //     //     color: white !important;
+    //     // }
+    // }
+
+    
+
+    .time {
+        align-self: flex-start;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-weight: 100;
+        font-size: 0.7em;
+    }
+}
+
+img {
+    height: 230px;
+    width: 230px;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    border-radius: 10px;
+    border-top-right-radius: 0px;
+}
