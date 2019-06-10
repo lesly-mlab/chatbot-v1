@@ -15,25 +15,26 @@ import * as moment from 'moment';
 })
 export class ChatFormComponent implements OnInit {
 
-  chatForm: ChatForm
-  private title: String
-  private result = {}
+  chatForm: ChatForm;
+  private title: String;
+  private result = {};
   list$;
-  date
-  time
-  now
-  value = ''
+  date;
+  time;
+  now;
+  value = '';
 
   @Input() listener: ChatFormInterface;
-  @Input() form
-  @Output() onInit: EventEmitter<any> = new EventEmitter()
+  @Input() form;
+  // tslint:disable-next-line:no-output-on-prefix
+  @Output() onInit: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('editableDiv') editableDiv
-  @ViewChild('bottomView') bottomView
+  @ViewChild('editableDiv') editableDiv;
+  @ViewChild('bottomView') bottomView;
   @ViewChild('datepicker') datepicker: IonDatetime;
   @ViewChild('timepicker') timepicker: IonDatetime;
   @ViewChild('dropdown') dropdown: IonSelect;
-  height
+  height;
 
   constructor(private platform: Platform, private navCtrl: NavController, private events: Events) { 
     this.platform.ready().then(() => {
@@ -50,28 +51,28 @@ export class ChatFormComponent implements OnInit {
   // }
 
   setChatListener(listener: ChatFormInterface) {
-    this.chatForm.setListener(listener)
-    this.chatForm.messageListener = this
-  } 
+    this.chatForm.setListener(listener);
+    this.chatForm.messageListener = this;
+  }
 
   newMessage() {
-    this.gotToBottom()
+    this.gotToBottom();
   }
 
   start() {
-    this.chatForm.start()
-    console.log(this.chatForm.messages)
+    this.chatForm.start();
+    console.log(this.chatForm.messages);
   }
 
   gotToBottom() {
     setTimeout(() => {
-      this.bottomView.nativeElement.scrollIntoView()
-    })
+      this.bottomView.nativeElement.scrollIntoView();
+    });
   }
 
   ngOnInit() {
-    this.chatForm = new ChatForm(this.form)
-    this.onInit.next()
+    this.chatForm = new ChatForm(this.form);
+    this.onInit.next();
     // fromEvent(this.editableDiv.nativeElement, 'paste')
     //   .pipe(delay(10))
     //   .subscribe(() => {
@@ -79,90 +80,93 @@ export class ChatFormComponent implements OnInit {
     //   })
 
       this.events.subscribe('newCameraPhoto', base64Photo => {
-        this.chatForm.sendImage(base64Photo, true)
-        this.gotToBottom()
-      })
+        this.chatForm.sendImage(base64Photo, true);
+        this.gotToBottom();
+      });
 
       this.events.subscribe('location', location => {
+        // tslint:disable-next-line:max-line-length
         const link = `https://maps.googleapis.com/maps/api/staticmap?center=${location.lat},${location.lng}&zoom=17&size=600x300&maptype=roadmap` +
         // "&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318" +
         `&markers=color:red%7Clabel:L%7C${location.lat},${location.lng}` +
-        "&key=AIzaSyBCnCPfmBgplyJw3fsk1bVzZIKaNZYCwSg"
-        this.chatForm.sendMessage(`<img src="${link}" />`, true, location)
-        this.gotToBottom()
+        '&key=AIzaSyBCnCPfmBgplyJw3fsk1bVzZIKaNZYCwSg';
+        this.chatForm.sendMessage(`<img src="${link}" />`, true, location);
+        this.gotToBottom();
         setTimeout(() => {
-          this.gotToBottom
-        }, 500)
+          // tslint:disable-next-line:no-unused-expression
+          this.gotToBottom;
+        }, 500);
         // this.chatForm.sendImage(base64Photo, true)
-      })
+      });
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnDestroy() {
-    this.events.unsubscribe('newCameraPhoto')
+    this.events.unsubscribe('newCameraPhoto');
   }
 
   optionSelected(option) {
-    console.log(option)
-    this.chatForm.optionSelected(option)
+    console.log(option);
+    this.chatForm.optionSelected(option);
   }
 
   dateChanged(date) {
-    this.value = date.detail.value
-    this.send()
+    this.value = date.detail.value;
+    this.send();
     // this.editableDiv.nativeElement.innerText = date.detail.value
   }
 
   timeChanged(time) {
-    this.value = time.detail.value
-    this.send()
+    this.value = time.detail.value;
+    this.send();
     // this.editableDiv.nativeElement.innerText = time.detail.value
   }
 
   newMessageClicked(event) {
-    console.log(event)
-    const message = this.chatForm.currentMessage
-    if (message.type == 'question') {
+    console.log(event);
+    const message = this.chatForm.currentMessage;
+    if (message.type === 'question') {
       switch (message.fieldType) {
         case 'date':
-          this.date = null
+          this.date = null;
           this.datepicker.open();
           // this.editableDiv.nativeElement.innerText = this.date
           break;
         case 'time':
-          this.time = null
+          this.time = null;
           this.timepicker.open();
           // this.editableDiv.nativeElement.innerText = this.date
           break;
         case 'dropdown':
-          this.list$ = this.chatForm.messageClicked()
+          this.list$ = this.chatForm.messageClicked();
           if (this.list$ instanceof Observable) {
             const con = this.list$.pipe(publish()) as ConnectableObservable<any>;
             const s = con.subscribe(list => {
               setTimeout(() => {
                 if (list.length > 0) {
-                  this.dropdown.open()
+                  this.dropdown.open();
                 } else {
-                  this.chatForm.sendMessage('You have no policies')
+                  this.chatForm.sendMessage('You have no policies');
                   // this.listener.dropdownEmpty()
                 }
-                
+
                 // s.unsubscribe()
-              }, 200)   
-            })
-            con.connect()
+              }, 200);
+            });
+            con.connect();
           }
-          console.log(this.list$)
+          console.log(this.list$);
           break;
         case 'camera':
-          this.navCtrl.navigateForward('/camera')
-          break
+          this.navCtrl.navigateForward('/camera');
+          break;
         case 'location':
-          this.navCtrl.navigateForward('/location-selector')
-          break
+          this.navCtrl.navigateForward('/location-selector');
+          break;
       }
 
-      if (message.fieldType != 'text') {
-        event.stopPropagation()
+      if (message.fieldType !== 'text') {
+        event.stopPropagation();
       }
     }
     // if (question.type == 'date') {
@@ -179,31 +183,33 @@ export class ChatFormComponent implements OnInit {
   }
 
   dropdownChanged(event) {
-    const data = event.detail.value
-    this.value = data.name
+    const data = event.detail.value;
+    this.value = data.name;
     // this.editableDiv.nativeElement.innerText = data.name
   }
 
   send() {
-    let text: string = this.value.trim() // this.editableDiv.nativeElement.innerText.trim()
+    // tslint:disable-next-line:prefer-const
+    let text: string = this.value.trim(); // this.editableDiv.nativeElement.innerText.trim()
 
-    if (text.length == 0)
-      return
+    if (text.length === 0) {
+      return;
+    }
 
-    if (this.chatForm.currentMessage.fieldType == 'dropdown') {
-      this.chatForm.sendMessage(text, true, this.dropdown.value.value)
+    if (this.chatForm.currentMessage.fieldType === 'dropdown') {
+      this.chatForm.sendMessage(text, true, this.dropdown.value.value);
     } else {
       this.chatForm.sendMessage(text, true);
     }
 
-    this.gotToBottom()
-    this.datepicker.value = ''
-    this.value = ''
+    this.gotToBottom();
+    this.datepicker.value = '';
+    this.value = '';
     // this.editableDiv.nativeElement.innerText = ''
   }
 
   uploadImage(player) {
-    console.log(player)
+    console.log(player);
     // file.click()
     const supported = 'mediaDevices' in navigator;
     const constraints = {
@@ -212,16 +218,14 @@ export class ChatFormComponent implements OnInit {
     navigator.mediaDevices.getUserMedia(constraints)
     .then((stream) => {
       player.srcObject = stream;
-      console.log(stream)
+      console.log(stream);
     });
 
-    console.log(supported)
+    console.log(supported);
   }
 
   previewImage(images) {
-    
 
-    
   }
 
 }

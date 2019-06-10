@@ -9,9 +9,9 @@ import { ChatFormInterface } from '../chat-engine/chat-form-interface.js';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements ChatFormInterface {
-  
-  form
-  @ViewChild('chatForm') chatForm: ChatFormComponent
+
+  form;
+  @ViewChild('chatForm') chatForm: ChatFormComponent;
 
   constructor() {
     this.form = json['default'];
@@ -26,12 +26,13 @@ export class HomePage implements ChatFormInterface {
     // Actions called here
     // throw new Error("Method not implemented.");
   }
-  dropdownList(id: any, formValues: any): Promise<{ name: string; value: string; }[]> | import("rxjs").Observable<{ name: string; value: string; }[]> | { name: string; value: string; }[] {
+  // tslint:disable-next-line:max-line-length
+  dropdownList(id: any, _formValues: any): Promise<{ name: string; value: string; }[]> | import('rxjs').Observable<{ name: string; value: string; }[]> | { name: string; value: string; }[] {
     // Dropdown Lists done here
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
   dropdownEmpty() {
     // Drop down empty event handled here
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }
